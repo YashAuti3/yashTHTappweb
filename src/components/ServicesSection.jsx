@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 function ServicesSection() {
+  const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState("cab");
   const [weight, setWeight] = useState(1);
   const [dates, setDates] = useState({
@@ -172,7 +174,14 @@ function ServicesSection() {
               </div>
 
               {/* ✅ FIXED BUTTON */}
-              <button className={`service-btn ${service.buttonColor}`}>
+              <button 
+                className={`service-btn ${service.buttonColor}`}
+                onClick={() => {
+                  if (service.id === "holiday") {
+                    navigate("/holiday-packages");
+                  }
+                }}
+              >
                 Book Now
               </button>
             </div>
